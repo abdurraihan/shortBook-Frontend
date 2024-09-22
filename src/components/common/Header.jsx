@@ -20,7 +20,7 @@ export default function Header() {
       </div>
 
       <div className="flex items-center space-x-4">
-        <Link href="./index.html" className="btn-primary">
+        <Link to="/" className="btn-primary">
           <img src={Home} alt="Home" />
           Home
         </Link>

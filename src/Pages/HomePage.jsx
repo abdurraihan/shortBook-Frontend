@@ -1,11 +1,10 @@
-import React from "react";
-
-import Header from "../components/common/Header";
+import { useAuth } from "../hook/useAuth";
 
 export default function HomePage() {
+  const { auth } = useAuth();
+  console.log(auth);
   return (
     <>
-      <Header />
       <p> home page</p>
     </>
   );
