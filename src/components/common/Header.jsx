@@ -1,15 +1,18 @@
 import Home from "../../assets/icons/home.svg";
 import Notification from "../../assets/icons/notification.svg";
-import Abater from "../../assets/images/avatars/avatar_1.png";
 import Logo from "../../assets/images/logo.svg";
 import { useAuth } from "../../hook/useAuth";
+import { useProfile } from "../../hook/useProfile";
 
 import { Link } from "react-router-dom";
 
 import Logout from "../auth/Logout";
 
 export default function Header() {
+  const { state } = useProfile();
   const { auth } = useAuth();
+
+  const user = state?.user ?? auth?.user;
   return (
     <nav className="sticky top-0 z-50 border-b border-[#3F3F3F] bg-[#1E1F24] py-4">
       <div className="flex items-center space-x-4">
@@ -34,13 +37,15 @@ export default function Header() {
 
         <Link to="/me" className="flex-center !ml-8 gap-3">
           <span className="text-lg font-medium lg:text-xl">
-            {auth?.user?.firstName}
+            {user?.firstName}
           </span>
-          <img
-            className="max-h-[32px] max-w-[32px] lg:max-h-[44px] lg:max-w-[44px]"
-            src={Abater}
-            alt=""
-          />
+          <div className="relative max-h-[62px] max-w-[62px] lg:max-h-[84px] lg:max-w-[84px]  ">
+            <img
+              className="h-full w-full object-cover rounded-full"
+              src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}`}
+              alt="user avatar"
+            />
+          </div>
         </Link>
       </div>
     </nav>
