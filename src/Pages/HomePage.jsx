@@ -19,7 +19,6 @@ export default function HomePage() {
           `${import.meta.env.VITE_SERVER_BASE_URL}/posts`
         );
 
-        // Check if the request was successful
         if (response.status === 200) {
           dispatch({ type: actions.post.DATA_FETCHED, data: response.data });
         }
