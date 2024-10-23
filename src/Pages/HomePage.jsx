@@ -1,13 +1,14 @@
-import { useEffect, useReducer } from "react";
+import { useEffect } from "react";
 import { actions } from "../action/action";
+import NewPost from "../components/posts/NewPost";
 import PostList from "../components/posts/PostList";
 import { useAuth } from "../hook/useAuth";
 import useAxios from "../hook/useAxios.js";
-import { initialState, postReducer } from "../reducers/postReducer";
+import { usePost } from "../hook/usePost";
 
 export default function HomePage() {
   const { auth } = useAuth();
-  const [state, dispatch] = useReducer(postReducer, initialState);
+  const { state, dispatch } = usePost();
   const { api } = useAxios();
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function HomePage() {
 
   return (
     <div>
+      <NewPost></NewPost>
       <PostList posts={state?.posts}></PostList>
     </div>
   );
