@@ -9,7 +9,7 @@ export default function PostCard({ post }) {
       <PostHeader post={post}></PostHeader>
       <PostBody poster={post?.image} content={post?.content}></PostBody>
       <PostAction
-        postId={post?.id}
+        post={post}
         commentCoutn={post?.comments?.length}
       ></PostAction>
       <PostComments post={post}></PostComments>
